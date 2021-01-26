@@ -1,0 +1,140 @@
+.button {
+  &-contained-basic {
+    color: #212529;
+    background-color: #f8f9fa;
+    border-color: #f8f9fa;
+    &:focus,
+    &:hover {
+      background-color: #e2e6ea;
+      border-color: #dae0e5;
+    }
+  }
+  /* contained 형 버튼 스타일 정의 */
+  &-contained-primary {
+    color: #fff;
+    background-color: #0052cc;
+    border-color: #0052cc;
+    &:focus,
+    &:hover {
+      background-color: #0069d9;
+      border-color: #0062cc;
+    }
+    &.is-disabled {
+      background-color: #ccc;
+      border-color: #ccc;
+    }
+    &.is-roundly {
+      border-radius: 0.3rem;
+    }
+  }
+  &-contained-secondary {
+    color: #fff;
+    background-color: #6c757d;
+    border-color: #6c757d;
+    &:focus,
+    &:hover {
+      background-color: #5a6268;
+      border-color: #545b62;
+    }
+  }
+  &-contained-tertiary {
+    color: #fff;
+    background-color: #dc3545;
+    border-color: #dc3545;
+    &:focus,
+    &:hover {
+      background-color: #c82333;
+      border-color: #bd2130;
+    }
+  }
+
+  /* outline 형 버튼 스타일 정의 */
+  &-outline-basic {
+    background: transparent;
+    color: #212529;
+    border-color: #212529;
+    &:focus,
+    &:hover {
+      background-color: rgba(33, 37, 41, 0.04);
+    }
+  }
+  &-outline-primary {
+    background: transparent;
+    color: #007bff;
+    border-color: #007bff;
+    &:focus,
+    &:hover {
+      background-color: rgba(0, 123, 255, 0.04);
+    }
+  }
+  &-outline-secondary {
+    color: #6c757d;
+    border-color: #6c757d;
+    background: transparent;
+    &:focus,
+    &:hover {
+      background-color: rgba(108, 117, 125, 0.04);
+    }
+  }
+  &-outline-tertiary {
+    color: #dc3545;
+    border-color: #dc3545;
+    background: transparent;
+    &:focus,
+    &:hover {
+      background-color: rgba(220, 53, 69, 0.04);
+    }
+  }
+  /* text 형 버튼 스타일 정의 */
+  &-text-basic {
+    background: transparent;
+    color: #212529;
+    border-color: transparent;
+    &:focus,
+    &:hover {
+      background-color: rgb(248, 249, 250);
+    }
+  }
+  &-text-primary {
+    background: transparent;
+    color: #007bff;
+    border-color: transparent;
+    &:focus,
+    &:hover {
+      background-color: rgba(0, 123, 255, 0.04);
+    }
+  }
+  &-text-secondary {
+    color: #6c757d;
+    background: transparent;
+    border-color: transparent;
+    &:focus,
+    &:hover {
+      background-color: rgba(108, 117, 125, 0.04);
+    }
+  }
+  &-text-tertiary {
+    color: #dc3545;
+    background: transparent;
+    border-color: transparent;
+    &:focus,
+    &:hover {
+      background-color: rgba(220, 53, 69, 0.04);
+    }
+  }
+  &.is-small {
+    height: 30px;
+  }
+  &.is-medium {
+    height: 36px;
+    font-size: 14px;
+    padding: 8px 16px;
+  }
+  &.is-large {
+    padding: 16px 120px;
+    font-size: 24px;
+  }
+  &.is-block {
+    width: 100%;
+  }
+}

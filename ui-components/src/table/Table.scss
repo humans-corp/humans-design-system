@@ -1,0 +1,51 @@
+.table-wrapper {
+  width: 100%;
+  border-top: 1px solid #111;
+
+  thead {
+    border-bottom: 1px solid #111;
+
+    th {
+      padding: 16px 0;
+      font-size: 16px;
+      font-weight: bold;
+      color: #111;
+
+      &.is-left {
+        text-align: left;
+      }
+
+      &.is-right {
+        text-align: right;
+      }
+    }
+  }
+
+  tbody {
+    tr {
+      &.is-highlight {
+        background-color: #f5f5f5;
+      }
+
+      td {
+        padding: 16px 0;
+        font-size: 16px;
+        line-height: 1.88;
+        color: #111;
+        border-bottom: 1px solid #ddd;
+
+        &.is-center {
+          text-align: center;
+        }
+
+        &.is-middle {
+          vertical-align: middle;
+        }
+
+        &.is-right {
+          text-align: right;
+        }
+      }
+    }
+  }
+}
