@@ -1,6 +1,9 @@
 import * as React from "react";
 import Modal from "../Modal";
-import Button, { ButtonComponentColor, ButtonComponentSize } from "../../Button/Button";
+import Button, {
+  ButtonComponentColor,
+  ButtonComponentSize,
+} from "../../Button/Button";
 import "./AlertModal.scss";
 
 interface Props {
@@ -21,19 +24,7 @@ export default function AlertModal({
 }: React.PropsWithChildren<Props>) {
   return (
     <div className="alert-modal-wrapper">
-      <Modal
-        isOpen={isOpen}
-        toggleModal={onClickHandler}
-        footer={
-          <Button
-            type="submit"
-            isBlock={true}
-            buttonSizeType={ButtonComponentSize.LARGE}
-            buttonColorType={ButtonComponentColor.PRIMARY}
-            onClick={onClickHandler}>
-            {buttonText}
-          </Button>
-        }>
+      <Modal isOpen={isOpen} toggleModal={onClickHandler} footer={() => {}}>
         <strong className="title">{title}</strong>
         <p className="paragraph">{description}</p>
       </Modal>
