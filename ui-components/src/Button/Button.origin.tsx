@@ -1,3 +1,4 @@
+/* eslint-disable import/no-anonymous-default-export */
 import * as React from "react";
 import styled from "@emotion/styled";
 import { css } from "@emotion/react";
@@ -189,12 +190,6 @@ export default function ({
   isRoundly = true,
 }: PropsWithChildren<Props>) {
 
-  switch (buttonColorType) {
-    case ButtonComponentColor.BASIC:
-      return <SmallSizeButton>{children}</SmallSizeButton>
-    case ButtonComponentColor.SECONDARY:
-      return <MediumSizeButton>{children}</MediumSizeButton>
-  }
   return (
     <Button
       type={type}

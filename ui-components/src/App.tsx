@@ -1,17 +1,21 @@
 import React from "react";
-import Button, { ButtonComponentColor } from "./Button/Button";
+import ButtonComponent, { Size, Color, Type } from "./Button/ButtonComponent";
 
-function App() {
+function Button() {
   return (
     <div className="App">
-      <Button
-        variant="contained"
-        buttonColorType={ButtonComponentColor.SECONDARY}
+      <ButtonComponent
+        type={Type.BUTTON}
+        height={Size.MEDIUM}
+        fontSize={Size.SMALL}
+        borderRadius={4}
+        background={Color.PRIMARY}
+        isDisabled={true}
       >
-        dd
-      </Button>
+        TESTBUTTON
+      </ButtonComponent>
     </div>
   );
 }
 
-export default App;
+export default Button;

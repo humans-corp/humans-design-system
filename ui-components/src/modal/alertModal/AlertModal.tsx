@@ -1,9 +1,5 @@
 import * as React from "react";
 import Modal from "../Modal";
-import Button, {
-  ButtonComponentColor,
-  ButtonComponentSize,
-} from "../../Button/Button";
 import "./AlertModal.scss";
 
 interface Props {
