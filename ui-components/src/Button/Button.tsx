@@ -47,7 +47,7 @@ const ComponentTextColor = (color: ButtonColor = ButtonColor.BASIC, disabled: bo
   primary: disabled ? HdsColor.HDSWHITE : HdsColor.HDSWHITE,
 }[color]);
 
-const ButtonComponent = styled.button<Props>`
+const Button = styled.button<Props>`
   appearance: none;
   display: ${props => props.isBlock ? 'flex' : 'inline-flex'};
   width: ${props => props.isBlock ? '100%' : 'auto'};
@@ -67,7 +67,7 @@ const ButtonComponent = styled.button<Props>`
   cursor: ${props => props.disabled ? 'not-allowed' : 'pointer'}
 `;
 
-const Button = ({
+const ButtonComponent = ({
   type,
   isBlock,
   size,
@@ -80,9 +80,9 @@ const Button = ({
 }: PropsWithChildren<Props>) => (
   // NOTE disabled 를 isDisabled 로 사용하지 않는 이유는
   // isDisabled 로 쓰면 button 의 attribute 인 disabled 할당이 안되기 때문
-  <ButtonComponent
-    type={type}
-    isBlock={isBlock}
+  <Button
+    type={type ? type : 'button'}
+    isBlock={isBlock ?? true}
     size={size}
     borderColor={borderColor}
     isRounded={isRounded}
@@ -91,7 +91,7 @@ const Button = ({
     onClick={onClick}
   >
     {children}
-  </ButtonComponent>
+  </Button>
 );
 
-export default Button;
+export default ButtonComponent;
