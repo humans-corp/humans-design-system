@@ -1,226 +1,97 @@
-import * as React from "react";
-import styled from "@emotion/styled";
-import { css } from "@emotion/react";
-import { PropsWithChildren } from "react";
-import classNames from "classnames";
+import * as React from 'react';
+import styled from '@emotion/styled';
+import { PropsWithChildren } from 'react';
+import HdsColor from '../HdsColor';
 
-export enum ButtonComponentSize {
-  SMALL = "small",
-  MEDIUM = "medium",
-  LARGE = "large",
+export enum ButtonSize {
+  LARGE = 'large',
+  MEDIUM = 'medium',
+  SMALL = 'small',
 }
 
-export enum ButtonComponentColor {
-  BASIC = "basic",
-  PRIMARY = "primary",
-  SECONDARY = "secondary",
-  TERTIARY = "tertiary",
+export enum ButtonColor {
+  BASIC = 'basic',
+  PRIMARY = 'primary',
 }
 
 type Props = {
-  type?: "submit" | "button" | "reset";
-  disabled?: boolean;
+  type?: 'button' | 'submit' | 'reset';
   isBlock?: boolean;
-  buttonSizeType?: ButtonComponentSize;
-  buttonColorType?: ButtonComponentColor;
-  variant: "contained" | "text" | "outline";
-  isRoundly?: boolean;
-
+  size?: ButtonSize;
+  borderColor?: string;
+  isRounded?: boolean;
+  colors?: ButtonColor;
+  disabled?: boolean;
   onClick?(): void;
 };
 
-const SmallSizeButton = css`
-  height: 30px;
+const ComponentSize = (size: ButtonSize = ButtonSize.SMALL): string => ({
+  small: '44',
+  medium: '68',
+  large: '83',
+}[size]);
+
+const ComponentTextSize = (size: ButtonSize = ButtonSize.SMALL): string => ({
+  small: '16',
+  medium: '24',
+  large: '24',
+}[size]);
+
+const ComponentBackground = (color: ButtonColor = ButtonColor.BASIC, disabled: boolean = false): string => ({
+  basic: disabled ? HdsColor.HDSGRAY400 : HdsColor.HDSGRAY100,
+  primary: disabled ? HdsColor.HDSGRAY400 : HdsColor.HDSBLUE500,
+}[color]);
+
+const ComponentTextColor = (color: ButtonColor = ButtonColor.BASIC, disabled: boolean = false): string => ({
+  basic: disabled ? HdsColor.HDSWHITE : HdsColor.HDSGRAY900,
+  primary: disabled ? HdsColor.HDSWHITE : HdsColor.HDSWHITE,
+}[color]);
+
+const Button = styled.button<Props>`
+  appearance: none;
+  display: ${props => props.isBlock ? 'flex' : 'inline-flex'};
+  width: ${props => props.isBlock ? '100%' : 'auto'};
+  min-width: 68px;
+  align-items: center;
+  justify-content: center;
+  height: ${props => `${ComponentSize(props.size)}px`};
+  ${props => props.borderColor
+    ? `border: 1px solid ${props.borderColor}`
+    : `border: 0`};
+  ${props => props.isRounded && `border-radius: 4px;`};
+  padding: 5px 15px;
+  box-sizing: border-box;
+  background: ${props => `${ComponentBackground(props.colors, props.disabled)}`};
+  font-size: ${props => `${ComponentTextSize(props.size)}px`};
+  color: ${props => props.colors ? `${ComponentTextColor(props.colors, props.disabled)}` : `${ComponentTextColor()}`};
+  cursor: ${props => props.disabled ? 'not-allowed' : 'pointer'}
 `;
 
-const MediumSizeButton = css`
-  height: 36px;
-  font-size: 14px;
-  padding: 8px 16px;
-`;
-
-const LargeSizeButton = css`
-  padding: 16px 120px;
-  font-size: 24px;
-`;
-const BasicContainedButton = {
-  contained: css`
-    color: #212529;
-    background-color: #f8f9fa;
-    border-color: #f8f9fa;
-    &:focus,
-    &:hover {
-      background-color: #e2e6ea;
-      border-color: #dae0e5;
-    }
-  `,
-  text: css`
-    background: transparent;
-    color: #212529;
-    border-color: transparent;
-    &:focus,
-    &:hover {
-      background-color: rgb(248, 249, 250);
-    }
-  `,
-  outline: css`
-    background: transparent;
-    color: #212529;
-    border-color: #212529;
-    &:focus,
-    &:hover {
-      background-color: rgba(33, 37, 41, 0.04);
-    }
-  `,
-};
-const PrimaryContainedButton = {
-  contained: css`
-    color: #fff;
-    background-color: #0052cc;
-    border-color: #0052cc;
-    &:focus,
-    &:hover {
-      background-color: #0069d9;
-      border-color: #0062cc;
-    }
-    &.is-disabled {
-      background-color: #ccc;
-      border-color: #ccc;
-    }
-    &.is-roundly {
-      border-radius: 0.3rem;
-    }
-  `,
-  text: css`
-    background: transparent;
-    color: #007bff;
-    border-color: transparent;
-    &:focus,
-    &:hover {
-      background-color: rgba(0, 123, 255, 0.04);
-    }
-  `,
-  outline: css`
-    background: transparent;
-    color: #007bff;
-    border-color: #007bff;
-    &:focus,
-    &:hover {
-      background-color: rgba(0, 123, 255, 0.04);
-    }
-  `,
-};
-
-const SecondaryContainedButton = css`
-  color: #fff;
-  background-color: #6c757d;
-  border-color: #6c757d;
-  &:focus,
-  &:hover {
-    background-color: #5a6268;
-    border-color: #545b62;
-  }
-`;
-
-const TertiaryContainedButton = css`
-  color: #fff;
-  background-color: #6c757d;
-  border-color: #6c757d;
-  &:focus,
-  &:hover {
-    background-color: #5a6268;
-    border-color: #545b62;
-  }
-`;
-
-const Button = styled("button")<Props>`
-  composes: ${(props) =>
-    // @ts-ignore
-    PrimaryContainedButton[props.variant]};
-  ${(props: Props) =>
-    props.buttonColorType === ButtonComponentColor.BASIC &&
-    css`
-      // @ts-ignore
-      composes: ${BasicContainedButton[props.variant]};
-    `}
-  ${(props: Props) =>
-    props.buttonColorType === ButtonComponentColor.PRIMARY && {
-      // @ts-ignore
-      composes: PrimaryContainedButton[props.variant],
-    }}
-  ${(props: Props) =>
-    props.buttonColorType === ButtonComponentColor.SECONDARY &&
-    SecondaryContainedButton}
-  ${(props: Props) =>
-    props.buttonColorType === ButtonComponentColor.TERTIARY &&
-    TertiaryContainedButton}
-  ${(props: Props) =>
-    props.buttonSizeType === ButtonComponentSize.SMALL && SmallSizeButton}
-  ${(props: Props) =>
-    props.buttonSizeType === ButtonComponentSize.MEDIUM && MediumSizeButton}
-  ${(props: Props) =>
-    props.buttonSizeType === ButtonComponentSize.LARGE && LargeSizeButton}
-  ${(props: Props) =>
-    props.isBlock &&
-    css`
-      width: 100%;
-    `}
-  ${(props: Props) =>
-    props.disabled &&
-    css`
-      width: 100%;
-    `}
-  ${(props: Props) =>
-    props.isRoundly &&
-    css`
-      border-radius: 0.3rem;
-    `}
-`;
-
-export default function ({
-  type = "button",
-  buttonColorType = ButtonComponentColor.PRIMARY,
+const ButtonComponent = ({
+  type,
+  isBlock,
+  size,
+  borderColor,
+  isRounded,
+  colors,
   disabled,
-  onClick,
   children,
-  variant = "contained",
-  buttonSizeType = ButtonComponentSize.MEDIUM,
-  isBlock = false,
-  isRoundly = true,
-}: PropsWithChildren<Props>) {
+  onClick,
+}: PropsWithChildren<Props>) => (
+  // NOTE disabled 를 isDisabled 로 사용하지 않는 이유는
+  // isDisabled 로 쓰면 button 의 attribute 인 disabled 할당이 안되기 때문
+  <Button
+    type={type ? type : 'button'}
+    isBlock={isBlock ?? true}
+    size={size}
+    borderColor={borderColor}
+    isRounded={isRounded}
+    colors={colors}
+    disabled={disabled}
+    onClick={onClick}
+  >
+    {children}
+  </Button>
+);
 
-  switch (buttonColorType) {
-    case ButtonComponentColor.BASIC:
-      return <SmallSizeButton>{children}</SmallSizeButton>
-    case ButtonComponentColor.SECONDARY:
-      return <MediumSizeButton>{children}</MediumSizeButton>
-  }
-  return (
-    <Button
-      type={type}
-      buttonSizeType={buttonSizeType}
-      buttonColorType={buttonColorType}
-      variant={variant}
-      isBlock={isBlock}
-      disabled={disabled}
-      onClick={onClick}
-      className={classNames([
-        "button",
-        `button-${variant}-${buttonColorType}`,
-        {
-          "is-small": buttonSizeType === ButtonComponentSize.SMALL,
-          "is-medium": buttonSizeType === ButtonComponentSize.MEDIUM,
-          "is-large": buttonSizeType === ButtonComponentSize.LARGE,
-        },
-        {
-          "is-disabled": !!disabled,
-        },
-        {
-          "is-roundly": !!isRoundly,
-        },
-      ])}
-    >
-      {children}
-    </Button>
-  );
-}
+export default ButtonComponent;
