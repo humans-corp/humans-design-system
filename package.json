@@ -1,9 +1,9 @@
 {
-  "private": true,
   "name": "humans-design-system",
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
+  "files": ["humans-design-system/"],
   "scripts": {
     "ui-components:dev": "yarn workspace ui-components start"
   },
@@ -11,8 +11,9 @@
     "type": "git",
     "url": "git+https://github.com/humans-corp/humans-design-system.git"
   },
-  "author": "",
-  "license": "ISC",
+  "keywords": ["component", "humans", "humans-design-system", "design-system"],
+  "author": "36layer",
+  "license": "MIT",
   "bugs": {
     "url": "https://github.com/humans-corp/humans-design-system/issues"
   },
