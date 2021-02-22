@@ -1,7 +1,7 @@
 import React from "react";
 import Button, { ButtonSize, ButtonColor } from "./Button/Button";
 
-function Buttons() {
+const App = () => {
   return (
     <>
       {/* NOTE prefix 는 vscode COMMENT ANCHOR extension 입니다. */}
@@ -172,4 +172,4 @@ function Buttons() {
   );
 }
 
-export default Buttons;
+export default App;

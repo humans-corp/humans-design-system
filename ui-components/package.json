@@ -1,7 +1,8 @@
 {
   "name": "ui-components",
-  "version": "0.1.0",
+  "version": "1.0.1",
   "private": true,
+  "main": "./main.ts",
   "dependencies": {
   },
   "scripts": {
