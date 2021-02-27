@@ -9,71 +9,99 @@ export enum ButtonSize {
   SMALL = 'small',
 }
 
-export enum ButtonColor {
+export enum ButtonVariant {
   BASIC = 'basic',
   PRIMARY = 'primary',
+  TINT = 'tint',
+  OUTLINE = 'outline',
 }
 
 type Props = {
   type?: 'button' | 'submit' | 'reset';
   isBlock?: boolean;
   size?: ButtonSize;
-  borderColor?: string;
   isRounded?: boolean;
-  colors?: ButtonColor;
+  variant?: ButtonVariant;
   disabled?: boolean;
   onClick?(): void;
 };
 
 const ComponentSize = (size: ButtonSize = ButtonSize.SMALL): string => ({
-  small: '44',
-  medium: '68',
-  large: '83',
+  small: '32',
+  medium: '40',
+  large: '52',
 }[size]);
 
 const ComponentTextSize = (size: ButtonSize = ButtonSize.SMALL): string => ({
-  small: '16',
-  medium: '24',
-  large: '24',
+  small: '12',
+  medium: '19',
+  large: '16',
 }[size]);
 
-const ComponentBackground = (color: ButtonColor = ButtonColor.BASIC, disabled: boolean = false): string => ({
-  basic: disabled ? HdsColor.HDSGRAY400 : HdsColor.HDSGRAY100,
-  primary: disabled ? HdsColor.HDSGRAY400 : HdsColor.HDSBLUE500,
-}[color]);
+const ComponentBackground = (variant: ButtonVariant = ButtonVariant.BASIC, disabled: boolean = false): string => ({
+  basic: disabled ? HdsColor.HDSGRAY100 : HdsColor.HDSGRAY200,
+  primary: disabled ? HdsColor.HDSGRAY100 : HdsColor.HDSBLUE400,
+  tint: disabled ? HdsColor.HDSGRAY100 : HdsColor.HDSBLUE50,
+  outline: HdsColor.HDSWHITE,
+}[variant]);
 
-const ComponentTextColor = (color: ButtonColor = ButtonColor.BASIC, disabled: boolean = false): string => ({
-  basic: disabled ? HdsColor.HDSWHITE : HdsColor.HDSGRAY900,
-  primary: disabled ? HdsColor.HDSWHITE : HdsColor.HDSWHITE,
-}[color]);
+const ComponentTextColor = (variant: ButtonVariant = ButtonVariant.BASIC, disabled: boolean = false): string => ({
+  basic: disabled ? HdsColor.HDSGRAY500 : HdsColor.HDSGRAY700,
+  primary: disabled ? HdsColor.HDSGRAY500 : HdsColor.HDSWHITE,
+  tint: disabled ? HdsColor.HDSGRAY500 : HdsColor.HDSBLUE400,
+  outline: disabled ? HdsColor.HDSGRAY400 : HdsColor.HDSBLUE400,
+}[variant]);
+
+const ComponentBorder = (variant: ButtonVariant = ButtonVariant.BASIC, disabled: boolean = false) => {
+  if (variant === ButtonVariant.OUTLINE) {
+    if (disabled) {
+      return `border: 1px solid ${HdsColor.HDSGRAY300}`;
+    } else {
+      return `border: 1px solid ${HdsColor.HDSBLUE400}`;
+    }
+  } else {
+    return 'border: 0';
+  }
+}
+
+const ComponentHover = (variant: ButtonVariant = ButtonVariant.BASIC): string => ({
+  basic: HdsColor.HDSGRAY300,
+  primary: HdsColor.HDSBLUE500,
+  tint: HdsColor.HDSBLUE100,
+  outline: HdsColor.HDSBLUE50,
+}[variant]);
+
 
 const Button = styled.button<Props>`
   appearance: none;
   display: ${props => props.isBlock ? 'flex' : 'inline-flex'};
   width: ${props => props.isBlock ? '100%' : 'auto'};
-  min-width: 68px;
+  min-width: 50px;
   align-items: center;
   justify-content: center;
   height: ${props => `${ComponentSize(props.size)}px`};
-  ${props => props.borderColor
-    ? `border: 1px solid ${props.borderColor}`
-    : `border: 0`};
+  ${props => `${ComponentBorder(props.variant, props.disabled)}`};
   ${props => props.isRounded && `border-radius: 4px;`};
-  padding: 5px 15px;
+  padding: 0 12px;
   box-sizing: border-box;
-  background: ${props => `${ComponentBackground(props.colors, props.disabled)}`};
+  background: ${props => `${ComponentBackground(props.variant, props.disabled)}`};
+  font-weight: normal;
   font-size: ${props => `${ComponentTextSize(props.size)}px`};
-  color: ${props => props.colors ? `${ComponentTextColor(props.colors, props.disabled)}` : `${ComponentTextColor()}`};
-  cursor: ${props => props.disabled ? 'not-allowed' : 'pointer'}
+  color: ${props => props.variant ? `${ComponentTextColor(props.variant, props.disabled)}` : `${ComponentTextColor()}`};
+  ${props => props.size !== ButtonSize.SMALL && 'letter-spacing: -.3'}px;
+  cursor: ${props => props.disabled ? 'not-allowed' : 'pointer'};
+
+  &:hover {
+    ${props => !props.disabled && `background: ${ComponentHover(props.variant)}`}
+  }
 `;
 
 const ButtonComponent = ({
   type,
   isBlock,
   size,
-  borderColor,
   isRounded,
-  colors,
+  variant,
   disabled,
   children,
   onClick,
@@ -84,9 +112,8 @@ const ButtonComponent = ({
     type={type ? type : 'button'}
     isBlock={isBlock ?? true}
     size={size}
-    borderColor={borderColor}
     isRounded={isRounded}
-    colors={colors}
+    variant={variant}
     disabled={disabled}
     onClick={onClick}
   >
