@@ -1,16 +1,29 @@
 import React from "react";
-import Button, { ButtonSize, ButtonColor } from "./Button/Button";
+import Button, { ButtonSize, ButtonVariant } from "./Button/Button";
+// import HdsColor from './HdsColor';
 
 function Buttons() {
   return (
     <>
+      {/* test */}
+      <div>
+        <Button
+          isBlock={false}
+          isRounded={true}
+          disabled={true}
+          variant={ButtonVariant.PRIMARY}
+          size={ButtonSize.MEDIUM}
+        >
+          TEST  
+        </Button>
+      </div>
       {/* NOTE prefix 는 vscode COMMENT ANCHOR extension 입니다. */}
-      <h1>BLOCK BUTTON</h1>
+      <h1>NON BLOCK BUTTON</h1>
       <div className="App">
         {/* NOTE PRIMARY LARGE BLOCK BUTTON */}
         <Button
           size={ButtonSize.LARGE}
-          colors={ButtonColor.PRIMARY}
+          variant={ButtonVariant.PRIMARY}
         >
           PRIMARY LARGE BLOCK BUTTON
         </Button>
@@ -18,8 +31,8 @@ function Buttons() {
         {/* NOTE BASIC LARGE BLOCK BUTTON */}
         <Button
           size={ButtonSize.LARGE}
-          isBlock={true}
-          colors={ButtonColor.BASIC}
+          isBlock={false}
+          variant={ButtonVariant.BASIC}
         >
           BASIC LARGE BLOCK BUTTON
         </Button>
@@ -27,9 +40,9 @@ function Buttons() {
         {/* NOTE BASIC LARGE BLOCK DISABLED BUTTON */}
         <Button
           size={ButtonSize.LARGE}
-          isBlock={true}
+          isBlock={false}
           disabled={true}
-          colors={ButtonColor.BASIC}
+          variant={ButtonVariant.BASIC}
         >
           BASIC LARGE BLOCK BUTTON
         </Button>
@@ -37,8 +50,8 @@ function Buttons() {
         {/* NOTE PRIMARY MEDIUM BLOCK BUTTON */}
         <Button
           size={ButtonSize.MEDIUM}
-          isBlock={true}
-          colors={ButtonColor.PRIMARY}
+          isBlock={false}
+          variant={ButtonVariant.PRIMARY}
         >
           PRIMARY MEDIUM BLOCK BUTTON
         </Button>
@@ -46,8 +59,8 @@ function Buttons() {
         {/* NOTE BASIC MEDIUM BLOCK BUTTON */}
         <Button
           size={ButtonSize.MEDIUM}
-          isBlock={true}
-          colors={ButtonColor.BASIC}
+          isBlock={false}
+          variant={ButtonVariant.BASIC}
         >
           BASIC MEDIUM BLOCK BUTTON
         </Button>
@@ -55,9 +68,9 @@ function Buttons() {
         {/* NOTE BASIC MEDIUM BLOCK DISABLED BUTTON */}
         <Button
           size={ButtonSize.MEDIUM}
-          isBlock={true}
+          isBlock={false}
           disabled={true}
-          colors={ButtonColor.BASIC}
+          variant={ButtonVariant.BASIC}
         >
           BASIC MEDIUM BLOCK BUTTON
         </Button>
@@ -65,8 +78,8 @@ function Buttons() {
         {/* NOTE PRIMARY SMALL BLOCK BUTTON */}
         <Button
           size={ButtonSize.SMALL}
-          isBlock={true}
-          colors={ButtonColor.PRIMARY}
+          isBlock={false}
+          variant={ButtonVariant.PRIMARY}
         >
           PRIMARY SMALL BLOCK BUTTON
         </Button>
@@ -74,8 +87,8 @@ function Buttons() {
         {/* NOTE BASIC SMALL BLOCK BUTTON */}
         <Button
           size={ButtonSize.SMALL}
-          isBlock={true}
-          colors={ButtonColor.BASIC}
+          isBlock={false}
+          variant={ButtonVariant.BASIC}
         >
           BASIC SMALL BLOCK BUTTON
         </Button>
@@ -83,20 +96,20 @@ function Buttons() {
         {/* NOTE BASIC SMALL BLOCK DISABLED BUTTON */}
         <Button
           size={ButtonSize.SMALL}
-          isBlock={true}
+          isBlock={false}
           disabled={true}
-          colors={ButtonColor.BASIC}
+          variant={ButtonVariant.BASIC}
         >
           BASIC SMALL BLOCK BUTTON
         </Button>
       </div>
 
-      <h1>NON-BLOCK BUTTON</h1>
+      <h1>BLOCK BUTTON</h1>
       <div className="App">
         {/* NOTE PRIMARY LARGE NON-BLOCK BUTTON */}
         <Button
           size={ButtonSize.LARGE}
-          colors={ButtonColor.PRIMARY}
+          variant={ButtonVariant.PRIMARY}
         >
           PRIMARY LARGE NON-BLOCK BUTTON
         </Button>
@@ -104,7 +117,7 @@ function Buttons() {
         {/* NOTE BASIC LARGE NON-BLOCK BUTTON */}
         <Button
           size={ButtonSize.LARGE}
-          colors={ButtonColor.BASIC}
+          variant={ButtonVariant.BASIC}
         >
           BASIC LARGE NON-BLOCK BUTTON
         </Button>
@@ -113,7 +126,7 @@ function Buttons() {
         <Button
           size={ButtonSize.LARGE}
           disabled={true}
-          colors={ButtonColor.BASIC}
+          variant={ButtonVariant.BASIC}
         >
           BASIC LARGE NON-BLOCK BUTTON
         </Button>
@@ -121,7 +134,7 @@ function Buttons() {
         {/* NOTE PRIMARY MEDIUM NON-BLOCK BUTTON */}
         <Button
           size={ButtonSize.MEDIUM}
-          colors={ButtonColor.PRIMARY}
+          variant={ButtonVariant.PRIMARY}
         >
           PRIMARY MEDIUM NON-BLOCK BUTTON
         </Button>
@@ -129,7 +142,7 @@ function Buttons() {
         {/* NOTE BASIC MEDIUM NON-BLOCK BUTTON */}
         <Button
           size={ButtonSize.MEDIUM}
-          colors={ButtonColor.BASIC}
+          variant={ButtonVariant.BASIC}
         >
           BASIC MEDIUM NON-BLOCK BUTTON
         </Button>
@@ -138,7 +151,7 @@ function Buttons() {
         <Button
           size={ButtonSize.MEDIUM}
           disabled={true}
-          colors={ButtonColor.BASIC}
+          variant={ButtonVariant.BASIC}
         >
           BASIC MEDIUM NON-BLOCK BUTTON
         </Button>
@@ -146,7 +159,7 @@ function Buttons() {
         {/* NOTE PRIMARY SMALL NON-BLOCK BUTTON */}
         <Button
           size={ButtonSize.SMALL}
-          colors={ButtonColor.PRIMARY}
+          variant={ButtonVariant.PRIMARY}
         >
           PRIMARY SMALL NON-BLOCK BUTTON
         </Button>
@@ -154,7 +167,7 @@ function Buttons() {
         {/* NOTE BASIC SMALL NON-BLOCK BUTTON */}
         <Button
           size={ButtonSize.SMALL}
-          colors={ButtonColor.BASIC}
+          variant={ButtonVariant.BASIC}
         >
           BASIC SMALL NON-BLOCK BUTTON
         </Button>
@@ -163,7 +176,7 @@ function Buttons() {
         <Button
           size={ButtonSize.SMALL}
           disabled={true}
-          colors={ButtonColor.BASIC}
+          variant={ButtonVariant.BASIC}
         >
           BASIC SMALL NON-BLOCK BUTTON
         </Button>
