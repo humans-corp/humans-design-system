@@ -5,18 +5,6 @@ import Button, { ButtonSize, ButtonVariant } from "./Button/Button";
 function Buttons() {
   return (
     <>
-      {/* test */}
-      <div>
-        <Button
-          isBlock={false}
-          isRounded={true}
-          disabled={true}
-          variant={ButtonVariant.PRIMARY}
-          size={ButtonSize.MEDIUM}
-        >
-          TEST  
-        </Button>
-      </div>
       {/* NOTE prefix 는 vscode COMMENT ANCHOR extension 입니다. */}
       <h1>NON BLOCK BUTTON</h1>
       <div className="App">

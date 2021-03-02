@@ -34,7 +34,7 @@ const ComponentSize = (size: ButtonSize = ButtonSize.SMALL): string => ({
 
 const ComponentTextSize = (size: ButtonSize = ButtonSize.SMALL): string => ({
   small: '12',
-  medium: '19',
+  medium: '14',
   large: '16',
 }[size]);
 
