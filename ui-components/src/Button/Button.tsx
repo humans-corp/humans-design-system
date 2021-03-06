@@ -91,8 +91,10 @@ const Button = styled.button<Props>`
   ${props => props.size !== ButtonSize.SMALL && 'letter-spacing: -.3'}px;
   cursor: ${props => props.disabled ? 'not-allowed' : 'pointer'};
 
-  &:hover {
-    ${props => !props.disabled && `background: ${ComponentHover(props.variant)}`}
+  ${props => !props.disabled
+    && `&:hover {
+       background: ${ComponentHover(props.variant)};
+    }`
   }
 `;
 

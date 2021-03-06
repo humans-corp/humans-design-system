@@ -1,10 +1,27 @@
 import React from "react";
 import Button, { ButtonSize, ButtonVariant } from "./Button/Button";
-// import HdsColor from './HdsColor';
+import Input from "./Input/Input";
+import {
+  svgTest,
+} from "./Icon/SvgTest";
 
 function Buttons() {
   return (
     <>
+      <h1>INPUT</h1>
+      <div className="App">
+        <Input
+          placeholder={"아햏햏"}
+          isBlock={true}
+          icon={svgTest}
+          name={'test1'}
+        />
+        <Input
+          placeholder={"아햏햏1"}
+          disabled={true}
+          icon={svgTest}
+        />
+      </div>
       {/* NOTE prefix 는 vscode COMMENT ANCHOR extension 입니다. */}
       <h1>NON BLOCK BUTTON</h1>
       <div className="App">
